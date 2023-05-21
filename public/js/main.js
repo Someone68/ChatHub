@@ -65,3 +65,8 @@ function outputRoomUsers(users) {
   ${users.map((user) => `<li>${user.username}</li>`).join("")}
   `;
 }
+
+function copy(that) {
+  navigator.clipboard.writeText(that.innerText);
+  alert("Coped to clipboard");
+}

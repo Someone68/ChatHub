@@ -31,47 +31,36 @@
             />
           </div>
           <div class="form-control">
-            <label for="room">Room</label>
-            <select name="room" id="room">
-              <option value="Room #1">Room #1</option>
-              <option value="Room #2">Room #2</option>
-              <option value="Room #3">Room #3</option>
-              <option value="Room #4">Room #4</option>
-              <option value="Room #5">Room #5</option>
-              <option value="Room #6">Room #6</option>
-              <option value="Private" id="private">Private 🔒</option>
-            </select>
+            <label for="room"
+              >Room ID (If invalid, it will create a room)</label
+            >
+            <input
+              type="text"
+              name="room"
+              id="room"
+              placeholder="Room ID"
+              required
+            />
+            <button class="btn" type="button" onclick="createRoom();">
+              Create a Room with random ID
+            </button>
           </div>
+          <hr />
           <button type="submit" class="btn">Join Chat</button>
         </form>
       </main>
     </div>
     <script>
-      const sequence = [
-        "ArrowUp",
-        "ArrowUp",
-        "ArrowDown",
-        "ArrowDown",
-        "ArrowLeft",
-        "ArrowRight",
-        "ArrowLeft",
-        "ArrowRight",
-        "b",
-        "a",
-      ];
-      let sequenceIndex = 0;
+      const letters = "abcdefghijklmnopqrstuvwxyz1234567890".split("");
 
-      document.addEventListener("keydown", (event) => {
-        if (event.key === sequence[sequenceIndex]) {
-          sequenceIndex++;
-          if (sequenceIndex === sequence.length) {
-            document.getElementById("private").style.display = "block";
-            sequenceIndex = 0; // reset the sequence
-          }
-        } else {
-          sequenceIndex = 0; // reset the sequence if incorrect key is pressed
+      function createRoom() {
+        let roomElm = document.getElementById("room");
+        let roomName = [];
+        for (let i = 0; i < 6; i++) {
+          roomName.push(letters[Math.floor(Math.random() * letters.length)]);
         }
-      });
+        roomElm.value = roomName.join("").toUpperCase();
+      }
     </script>
   </body>
 </html>
